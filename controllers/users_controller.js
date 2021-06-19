@@ -40,6 +40,12 @@ module.exports.create = function(req, res){
 }
 
 // sign in and create a session for user
-module.exports.creaseSession = function(req, res){
-    //TODO later
+module.exports.createSession = function(req, res){
+    return res.redirect('/');
+}
+
+module.exports.destroySession = function(req, res){
+    req.logout();   // function given to req by passport
+
+    return res.redirect('/');
 }
