@@ -1,4 +1,6 @@
 const Post = require('../models/post');
+const User = require('../models/user');
+
 
 module.exports.home = function(req, res){
     // console.log(req.cookies);
@@ -29,6 +31,22 @@ module.exports.home = function(req, res){
     //     });
     // });
 
+    // Post.find({})
+    // .populate('user')
+    // .populate({
+    //     path:'comments',
+    //     populate: {
+    //         path:'user',
+    //     },
+    // })
+    // .exec(function(err, posts){
+    //     if(err){console.log('err in finding the posts'); return;}
+    //     return res.render('home',{
+    //         title:"Home",
+    //         posts: posts,
+    //     });
+    // });
+
     Post.find({})
     .populate('user')
     .populate({
@@ -38,10 +56,14 @@ module.exports.home = function(req, res){
         },
     })
     .exec(function(err, posts){
-        if(err){console.log('err in finding the posts'); return;}
-        return res.render('home',{
-            title:"Home",
-            posts: posts,
+
+        User.find({}, function(err, users){
+            if(err){console.log('err in finding the posts'); return;}
+            return res.render('home',{
+                title:"Home",
+                posts: posts,
+                all_users: users,
+            });
         });
     });
 };

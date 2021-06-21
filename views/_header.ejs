@@ -3,7 +3,7 @@
 
     <div id = "auth-links">
             <% if(locals.user){ %>
-                <div id="link1"> <a href="/users/profile" class="remove-a-style"><%= user.name %></a> </div>
+                <div id="link1"> <a href="/users/profile/<%= locals.user.id %>" class="remove-a-style"><%= user.name %></a> </div>
                 <div id="link2"> <a href="/users/sign-out" class="remove-a-style">Sign Out</a> </div>    
             <% }else{ %>
                 <div id="link1" > <a href="/users/sign-in" class="remove-a-style">Sign In</a> </div>
