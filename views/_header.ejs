@@ -1,14 +1,14 @@
 <header>
-    Page Header
+    <div id="header-logo">codeial</div>
 
-    <ul>
-        <% if(locals.user){ %>
-            <li> <a href="/users/profile"><%= user.name %></a> </li>
-            <li> <a href="/users/sign-out">Sign Out</a> </li>    
-        <% }else{ %>
-            <li> <a href="/users/sign-in">Sign In</a> </li>
-            <li> <a href="/users/sign-up">Sign Up</a> </li>
-        <% } %>
-    </ul>
+    <div id = "auth-links">
+            <% if(locals.user){ %>
+                <div id="link1"> <a href="/users/profile" class="remove-a-style"><%= user.name %></a> </div>
+                <div id="link2"> <a href="/users/sign-out" class="remove-a-style">Sign Out</a> </div>    
+            <% }else{ %>
+                <div id="link1" > <a href="/users/sign-in" class="remove-a-style">Sign In</a> </div>
+                <div id="link2"> <a href="/users/sign-up" class="remove-a-style">Sign Up</a> </div>
+            <% } %>
+    </div>
 
 </header>

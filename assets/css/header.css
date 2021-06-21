@@ -1,0 +1,23 @@
+header {
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: blue;
+  color: white; }
+  header #header-logo {
+    font-weight: bold;
+    font-size: 2rem; }
+  header #auth-links {
+    margin-top: 6px;
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; }
+    header #auth-links #link1 {
+      margin-right: 1rem;
+      text-transform: capitalize; }
+
+.remove-a-style {
+  text-decoration: none;
+  color: inherit; }
