@@ -18,9 +18,11 @@ module.exports.profile = function(req, res){
 module.exports.update = function(req, res){
     if(req.user.id == req.params.id){
         User.findByIdAndUpdate(req.params.id, {name:req.body.name, email:req.body.email}, function(err, user){
+            req.flash('success', "Your profile is updated");
             return res.redirect('back');
         });
     }else{
+        req.flash('error', "You cannot update this profile");
         return res.status(401).send('Unauthorized');
     }
 };
@@ -44,19 +46,24 @@ module.exports.signIn = function(req, res){
 
 module.exports.create = async function(req, res){
     if(req.body.password != req.body.confirm_password){
+        req.flash('error', "Your passwords didn't match");
         return res.redirect('back');
     }
     try {
         let user = await User.findOne({email: req.body.email});
         if(!user){
-            let user = await User.create(req.body)
+            let user = await User.create(req.body);
+            req.flash('success', "You signed up successfully");
             return res.redirect('/users/sign-in');
         }else{
+            req.flash('error', "This email id is already in use");
             return res.redirect('back');
         }    
     } catch (error) {
-        console.log("Error in creating user ... in users_controller .create ", error);
-        return;
+        req.flash('error', error);
+        return res.redirect('back');
+        // console.log("Error in creating user ... in users_controller .create ", error);
+        // return;
     }
 };
 
@@ -80,11 +87,13 @@ module.exports.create = async function(req, res){
 
 // sign in and create a session for user
 module.exports.createSession = function(req, res){
+    req.flash('success', 'Logged in Successfully');
     return res.redirect('/');
 }
 
 module.exports.destroySession = function(req, res){
+    
     req.logout();   // function given to req by passport
-
+    req.flash('success', 'You have logged out!');
     return res.redirect('/');
 }

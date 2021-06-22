@@ -14,12 +14,15 @@ module.exports.create = async function(req, res){
             // updating in db for first time
             post.comments.push(comment);    //automatically pushes the comment id
             post.save();  // should be called after updating because it is in RAM for now
+            req.flash('success', "You commented on the post");
             return res.redirect('/');
         }
 
     } catch (error) {
-        console.log('Error increating comment...in comments_controller .create, ', error);
-        return;
+        req.flash('error', error);
+        return res.redirect('/');
+        // console.log('Error increating comment...in comments_controller .create, ', error);
+        // return;
     } 
 };
 
@@ -35,14 +38,18 @@ module.exports.destroy = async function(req, res){
 
             await Post.findByIdAndUpdate(postId, {$pull: {comments: req.params.id}});
             
+            req.flash('success', "You removed the comment");
             return res.redirect('back');
         }else{
+            req.flash('success', "You cannot remove this comment");
             return res.redirect('back');
         }
 
     } catch (error) {
-        console.log("Error in deletein comment ... in comments_controller, ", error);
-        return;
+        req.flash('error', error);
+        return res.redirect('back');
+        // console.log("Error in deletein comment ... in comments_controller, ", error);
+        // return;
     }
     
 };
