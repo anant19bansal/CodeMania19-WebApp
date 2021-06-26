@@ -1,6 +1,5 @@
 #home-container {
   display: flex;
-  min-height: 100%;
   height: auto; }
   #home-container #feeds-posts {
     width: 70%;

@@ -6,7 +6,14 @@
 
     <div id="col2">
         <div id="row1"><a href="/" class="remove-a-style">Home</a></div>
-        <div id="row2"><a href="/users/profile/<%= locals.user.id %>" class="remove-a-style">Profile</a></div>
+        <div id="row2">
+            <% if(locals.user) { %>
+                <a href="/users/profile/<%= locals.user.id %>" class="remove-a-style">Profile</a>    
+            <% }else{ %>
+                <a href="/users/sign-in" class="remove-a-style">Profile</a>
+            <% } %>
+            
+        </div>
     </div>
 
 </footer>

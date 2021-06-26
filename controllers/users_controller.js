@@ -1,5 +1,6 @@
 const User = require('../models/user');
-
+const fs = require('fs');
+const path = require('path');
 // module.exports.profile = function(req, res){
 //     return res.render('user_profile',{
 //         title: "user profile"
@@ -15,16 +16,46 @@ module.exports.profile = function(req, res){
     });
 };
 
-module.exports.update = function(req, res){
+module.exports.update = async function(req, res){
+    // if(req.user.id == req.params.id){
+    //     User.findByIdAndUpdate(req.params.id, {name:req.body.name, email:req.body.email}, function(err, user){
+    //         req.flash('success', "Your profile is updated");
+    //         return res.redirect('back');
+    //     });
+    // }else{
+    //     req.flash('error', "You cannot update this profile");
+    //     return res.status(401).send('Unauthorized');
+    // }
     if(req.user.id == req.params.id){
-        User.findByIdAndUpdate(req.params.id, {name:req.body.name, email:req.body.email}, function(err, user){
-            req.flash('success', "Your profile is updated");
+        try {
+            let user = await User.findById(req.params.id);
+            User.uploadedAvatar(req, res, function(err){
+                if(err) {console.log('**** Multer Error: ', err); return;}
+                console.log(req.file);
+                user.name = req.body.name;
+                user.email = req.body.email;
+
+                if(req.file){
+
+                    if(user.avatar){
+                        fs.unlinkSync(path.join(__dirname, '..', user.avatar));
+                    }
+
+                    // saving path of the uploaded file into the avatar field in the user
+                    user.avatar = User.avatarPath + '/' +req.file.filename;
+                }
+                user.save();
+                return res.redirect('back');
+            });
+        } catch (err) {
+            req.flash('err', err);
             return res.redirect('back');
-        });
+        }
     }else{
         req.flash('error', "You cannot update this profile");
         return res.status(401).send('Unauthorized');
     }
+
 };
 
 
