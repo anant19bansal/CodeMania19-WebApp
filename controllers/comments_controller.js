@@ -3,17 +3,34 @@ const Post = require('../models/post');
 
 module.exports.create = async function(req, res){
     try {
-        
-        let post = await Post.findById(req.body.post)
+        let post = await Post.findById(req.body.post);
+        // console.log(req.body);
         if(post){
             let comment = await Comment.create({
                 content: req.body.content,
                 user:req.user._id,
                 post:req.body.post,
             });
+            
             // updating in db for first time
-            post.comments.push(comment);    //automatically pushes the comment id
-            post.save();  // should be called after updating because it is in RAM for now
+            await post.comments.push(comment);    //automatically pushes the comment id
+            await post.save();  // should be called after updating because it is in RAM for now
+
+            await comment.populate('user').execPopulate();
+            console.log(comment);
+            if(req.xhr){
+                return res.status(200).json({
+                    data:{
+                        comment:{
+                            content: comment.content,
+                            Id: comment._id,
+                            postId: comment.post,
+                            name:comment.user.name
+                        }
+                    }
+                });
+            }
+
             req.flash('success', "You commented on the post");
             return res.redirect('/');
         }
@@ -38,6 +55,14 @@ module.exports.destroy = async function(req, res){
 
             await Post.findByIdAndUpdate(postId, {$pull: {comments: req.params.id}});
             
+            if(req.xhr){
+                return res.status(200).json({
+                    data:{
+                        comment_id: comment._id
+                    }
+                });
+            }
+
             req.flash('success', "You removed the comment");
             return res.redirect('back');
         }else{

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/codeial_development');
+mongoose.set('useFindAndModify', false);
 
 const db = mongoose.connection;
 
