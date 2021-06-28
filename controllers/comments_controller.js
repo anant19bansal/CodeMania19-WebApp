@@ -1,5 +1,6 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
+const commentsMailer = require('../mailers/comments_mailer');
 
 module.exports.create = async function(req, res){
     try {
@@ -16,7 +17,8 @@ module.exports.create = async function(req, res){
             await post.comments.push(comment);    //automatically pushes the comment id
             await post.save();  // should be called after updating because it is in RAM for now
 
-            await comment.populate('user').execPopulate();
+            await comment.populate('user', 'name email').execPopulate();
+            commentsMailer.newComment(comment);
             console.log(comment);
             if(req.xhr){
                 return res.status(200).json({
