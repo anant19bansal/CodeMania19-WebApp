@@ -49,6 +49,7 @@ module.exports.toggleLike = async function(req, res){
 
 
     } catch (error) {
+        console.log("********Error in likes_controller******");
         console.log(err);
         return res.status(500).json({
             message: 'Internal Server Error'

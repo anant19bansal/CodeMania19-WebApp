@@ -17,6 +17,12 @@ class PostComments{
         $(' .delete-comment-button', this.postContainer).each(function(){
             self.deleteComment($(this));
         });
+
+        $(' .post-comments-list > ul > li', this.postContainer).each(function(){
+            let self = $(this);
+            let commentId = self.prop('id').split("-")[1];
+            new LikePostsComments('Comment', commentId);
+        })
     }
 
 
@@ -40,7 +46,7 @@ class PostComments{
                     // console.log($(' .delete-comment-button'));
                     // console.log($(' .delete-comment-button', newComment));
                     pSelf.deleteComment($(' .delete-comment-button', newComment));
-
+                    new LikePostsComments('Comment', data.data.comment.Id);
                     new Noty({
                         theme: 'relax',
                         text: "Comment published!",
@@ -67,6 +73,12 @@ class PostComments{
                         ${ comment.content }
                         <br>
                         <small>${ comment.name }</small>
+                        
+                        <small class="like-buttons-comment">
+                            <div><span class="likes-count">0</span><span>&nbsp;Likes</span></div>
+                            <a href="/likes/toggle/?id=${comment.Id}&type=Comment"><i class="fas fa-heart" style="color: lightgrey;"></i></a>
+                        </small><br>
+
                         <small>
                             <a class="delete-comment-button" href="/comments/destroy/${ comment.Id}">X</a>
                         </small> 

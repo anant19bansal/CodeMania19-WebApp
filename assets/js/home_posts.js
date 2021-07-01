@@ -20,6 +20,7 @@
                     // console.log($(' .delete-post-button', newPost));
                     deletePost($(' .delete-post-button', newPost));
                     new PostComments(data.data.post.Id);
+                    new LikePostsComments('Post', data.data.post.Id);
                     new Noty({
                         theme: 'relax',
                         text: "Post is published!",
@@ -44,6 +45,11 @@
                         ${ post.content }<br>
                         <small>${ post.name }</small>
                     </p>
+
+                    <small class="like-buttons-post">
+                        <div><span class="likes-count">0</span><span>&nbsp;Likes</span></div>
+                        <a href="/likes/toggle/?id=${post.Id}&type=Post"><i class="fas fa-heart" style="color: lightgrey;"></i></a>
+                    </small><br>
                 
                         <small>
                             <a class="delete-post-button" href="/posts/destroy/${ post.Id }">X</a>
@@ -98,6 +104,7 @@
             // get the post's id by splitting the id attribute
             let postId = self.prop('id').split("-")[1];
             new PostComments(postId);
+            new LikePostsComments('Post', postId);
         });
     }
 

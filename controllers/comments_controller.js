@@ -1,5 +1,6 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
+const Like = require('../models/like');
 const commentsMailer = require('../mailers/comments_mailer');
 const commentEmailWorker = require('../workers/comment_email_worker');
 const queue = require('../config/kue');
@@ -21,11 +22,11 @@ module.exports.create = async function(req, res){
 
             await comment.populate('user', 'name email').execPopulate();
             // commentsMailer.newComment(comment);
-            let job = queue.create('emails', comment).save(function(err){
-                if(err) {console.log('error in sending to the queue ', err); return;}
+            // let job = queue.create('emails', comment).save(function(err){
+            //     if(err) {console.log('error in sending to the queue ', err); return;}
 
-                console.log('job enqueued ', job.id);
-            })
+            //     console.log('job enqueued ', job.id);
+            // })
             console.log(comment);
             if(req.xhr){
                 return res.status(200).json({
@@ -60,6 +61,7 @@ module.exports.destroy = async function(req, res){
         let comment = await Comment.findById(req.params.id);
         if(comment.user == req.user.id){
             let postId = comment.post;
+            let del = await Like.deleteMany({onModel:'Comment', likeable:comment._id})
             comment.remove();
 
             await Post.findByIdAndUpdate(postId, {$pull: {comments: req.params.id}});
