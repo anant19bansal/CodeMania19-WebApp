@@ -3,7 +3,6 @@
     Codeial / <%= title %>
 </h1> -->
 
-
 <div id="home-container">
     <section id="feeds-posts">
         <h4>Posts</h4>
@@ -25,15 +24,29 @@
         </div>
     </section>
     
-    <section id="user-friends">
-        <h4>Friends</h4>
-        <% for(u of all_users){ %>
-            <p>
-                <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
-            </p>    
-        <% } %>
+    <section id="aside-section">
+        <section id="user-friends">
+            <h4>Friends</h4>
+            <% for(f of friends){ %>
+                <p>
+                    <a href="/users/profile/<%= f.id %>"><%= f.name %></a>
+                </p>    
+            <% } %>
+        </section>
+
+        <section id="all-users">
+            <h4>Users</h4>
+            <% for(u of all_users){ %>
+                <p>
+                    <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
+                </p>    
+            <% } %>
+        </section>
+
     </section>
+
 </div>
+
 <script src="/js/likes.js"></script>
 <script src="/js/home-post-comments.js"></script>
 <script src="/js/home_posts.js"></script>

@@ -16,11 +16,27 @@ module.exports.home = async function(req, res){
             populate: [{path: 'likes'}, {path: 'user'}]
         });
         let users = await User.find({});
-        // console.log(posts);
+        // console.log(users);
+        let friends = [];
+        if(req.user){
+            let u = await User.findById(req.user._id)
+            .populate({path: 'friendships', populate:[{path: 'from_user'},{path: 'to_user'}]});
+            // console.log(user.friendships);
+            for(f of u.friendships){
+                if(f.from_user.id != u.id){
+                    friends.push(f.from_user);
+                }else{
+                    friends.push(f.to_user);
+                }
+            }
+        }
+        
+        // console.log(friends);
         return res.render('home',{
             title:"Home",
             posts: posts,
             all_users: users,
+            friends: friends,
         });
 
     } catch (err) {

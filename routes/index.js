@@ -13,6 +13,7 @@ router.use('/comments', require('./comments'));
 router.use('/api', require('./api'));
 router.use('/reset-password', require('./reset-password'));
 router.use('/likes', require('./likes'));
+router.use('/friends', require('./friends'));
 //for any other router access from here
 //router.use('/routerName', require('./routerFile'));
 

@@ -5,7 +5,7 @@
 <!-- <h2>Hi! <%= user.name %></h2>
 <p>Your email id is: <%= user.email %></p> -->
 
-<img src = "<%= user.avatar %>" alt="<%= user.name %>" width="100">
+<img src = "<%= profile_user.avatar %>" alt="<%= profile_user.name %>" width="100">
 
 
 <h2>Hi! <%= profile_user.name %></h2>
@@ -20,4 +20,20 @@
             <input type="submit" value="update">
         </form>
 <% } %>
+
+<% if(user.id != profile_user.id){ %>
+    <% if(profile_user.friendships.findIndex((f) => ((f.from_user==user.id) || (f.to_user==user.id))) == -1){ %>
+        <div id="friend-button-container">
+            <a href="/friends/add/<%= profile_user.id%>"><button id="friend-button">Add Friend</button></a>
+        </div>    
+    <% }else{ %>
+        <div id="friend-button-container">
+            <a href="/friends/remove/<%= profile_user.id%>"><button id="friend-button">Remove Friend</button></a>
+        </div>
+    <% } %>
+        
+<% } %>
+
+<script src="/js/friends.js"></script>
+
 

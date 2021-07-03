@@ -8,12 +8,13 @@ const path = require('path');
 // };
 
 module.exports.profile = function(req, res){
-    User.findById(req.params.id, function(err, user){
+    User.findById(req.params.id).populate({path: 'friendships'}).exec(function(err, user){
+        // console.log(user);
         return res.render('user_profile',{
             title: "user profile",
             profile_user: user
         });
-    });
+    })
 };
 
 module.exports.update = async function(req, res){

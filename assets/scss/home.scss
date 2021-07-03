@@ -7,9 +7,19 @@
         padding:10px;
     }
 
-    #user-friends{
+    #aside-section{
         width:30%;
-        padding:10px;
+        // padding:10px;
         border-left:1px solid lightgrey;
+
+        #user-friends{
+            height: 40%;
+            padding:10px;
+            border-bottom:1px solid lightgrey;
+        }
+
+        #all-users{
+            padding:10px;
+        }
     }
 }
