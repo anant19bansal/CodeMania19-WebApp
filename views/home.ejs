@@ -43,10 +43,23 @@
             <% } %>
         </section>
 
+        <%-include('_chat');-%>
+
     </section>
 
+    
+
 </div>
+
+
 
 <script src="/js/likes.js"></script>
 <script src="/js/home-post-comments.js"></script>
 <script src="/js/home_posts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+<script src="/js/chat_engine.js"></script>
+<%if(locals.user){ %>
+    <script>
+        new ChatEngine('chat-container', '<%= locals.user._id %>');
+    </script>    
+<% }%>

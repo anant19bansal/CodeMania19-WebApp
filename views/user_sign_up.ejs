@@ -1,13 +1,31 @@
-<h1>Sign Up</h1>
+<link rel="stylesheet" href="/css/sign_in_up.css">
+<div class="sign-box">
+    <div class="sign-content">
 
-<form action="/users/create" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-    <input type="submit" value="Sign Up">
-</form>
+        <div class = "sign-heading">Sign up</div>
 
-<p>
-    <a href="/users/auth/google">Google Sign-in/Sign-up</a>
-</p>
+        <div>
+            <form action="/users/create" method="POST">
+                <div><input class="input-box" type="text" name="name" placeholder="Your Name" required></div>
+                <div><input class="input-box" type="email" name="email" placeholder="Your Email" required></div>
+                <div><input class="input-box" type="password" name="password" placeholder="Password" required></div>
+                <div><input class="input-box" type="password" name="confirm_password" placeholder="Confirm Password" required></div>
+                <div><input class="form-submit-btn" type="submit" value="Sign Up"></div>
+            </form>
+        </div>
+
+        <div class="or-line">
+            <div class="or-horizontal-line"></div>
+            <div class="or-text">OR</div>
+            <div class="or-horizontal-line"></div>
+        </div>
+
+        <a href="/users/auth/google">
+            <div class="sign-google">
+                <div><img src="/images/google-logo.png"></div>
+                <div>Sign in with Google</div>
+            </div>
+        </a>
+    </div>
+    
+</div>

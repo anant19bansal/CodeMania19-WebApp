@@ -1,0 +1,101 @@
+.sign-box{
+    background-color: white;
+    width: 450px;
+    padding: 10px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 60px;
+
+    .sign-content{
+        width: 389px;
+        margin: 0.6rem 0 1.7rem 0;
+
+        .sign-heading{
+            margin: auto;
+            color: #FE7D41;
+            font-size: 30px;
+            font-weight: bold;
+            border-bottom: 3px solid #FE7D41;
+            text-align: center;
+            width: 100%;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+    
+        .input-box{
+            padding: 0.5rem;
+            width: 100%;
+            margin-bottom: 10px;
+            outline: none;
+            border: 1.5px solid #e0d8d8;
+        }
+    
+        #forgot-password{
+            text-align: end;
+            font-size: 13px;
+            margin-bottom: 10px;
+            a{
+                text-decoration: none;
+                
+            }
+        }
+    
+        .form-submit-btn{
+            margin: auto;
+            padding: 0.5rem;
+            width: 100%;
+            border: none;
+            color: white;
+            background-color: #FE7D41;
+            font-size: 14px;
+        }
+    
+        .or-line{
+            margin-top: -0.2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+    
+            .or-horizontal-line{
+                width: 9rem;
+                border-bottom: 2px solid black;
+            }
+    
+            .or-text{
+                position: relative;
+                top: 0.5rem;
+                padding:0 1.3rem;
+            }
+        }
+            
+        a{
+            text-decoration: none;
+            color: #FE7D41;
+            width: 100%;
+
+            .sign-google{
+                border: 1px solid #b7a7a7;
+                padding: 0.4rem;
+                font-size: 14px;
+                font-weight: bold;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+    
+            img{
+                height: 20px;
+                width: 20px;
+                margin-right: 1rem;
+            }
+    
+        }
+    }
+
+        
+}
