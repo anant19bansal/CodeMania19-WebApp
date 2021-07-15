@@ -12,11 +12,20 @@ header {
     margin-top: 6px;
     font-size: 1.2rem;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between; }
+    flex-direction: row; }
+    header #auth-links #header-profile-photo {
+      height: 30;
+      width: 30;
+      object-fit: cover; }
+      header #auth-links #header-profile-photo img {
+        height: inherit;
+        width: inherit;
+        object-fit: cover;
+        border-radius: 50%; }
     header #auth-links #link1 {
-      margin-right: 1rem;
-      text-transform: capitalize; }
+      padding: 0 1rem;
+      text-transform: capitalize;
+      text-align: center; }
 
 .remove-a-style {
   text-decoration: none;
