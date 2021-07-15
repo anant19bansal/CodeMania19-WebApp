@@ -10,7 +10,7 @@ router.post('/update/:id',passport.checkAuthentication,usersController.update);
 router.get('/sign-up',passport.checkAuth ,usersController.signUp);
 router.get('/sign-in', passport.checkAuth,usersController.signIn);
 router.post('/create', usersController.create);
-
+router.post('/update-avatar/:id', passport.checkAuthentication,usersController.updateAvatar);
 //use passport as a middleware to authenticate
 router.post('/create-session',passport.authenticate(
     'local',
