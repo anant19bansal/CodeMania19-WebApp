@@ -1,52 +1,72 @@
 <link rel="stylesheet" href="/css/user_profile.css">
-<div class="profile-box">
-    <div class="profile-content">
 
-        <div class="image-and-name">
-            <% if(profile_user.avatar) { %>
-                <div class="profile-image-container"><img src = "<%= profile_user.avatar %>" alt="<%= profile_user.name %>"></div> 
-            <% }else{ %>
-                <div class="profile-image-container"><img src = "/images/default-avatar.jpg" alt="<%= profile_user.name %>"></div>
+<div id="profile-page">
+    <header id="header-background-image">
+    </header>
+
+    <div class="image-and-name">
+        <% if(profile_user.avatar) { %>
+            <div class="profile-image-container"><img src = "<%= profile_user.avatar %>" alt="<%= profile_user.name %>"></div> 
+        <% }else{ %>
+            <div class="profile-image-container"><img src = "/images/default-avatar.jpg" alt="<%= profile_user.name %>"></div>
+        <% } %>
+        <div class="profile-name"><%= profile_user.name %></div>
+    </div>
+
+
+    <div id="after-name-section">        
+
+        <div id="aside-left">
+
+            <div id="intro-heading"> Intro </div>
+
+            <div class="intro-item"><i class="fas fa-user"></i><%= profile_user.name %></div>
+            <div class="intro-item"><i class="fas fa-envelope"></i><%= profile_user.email %></div>
+            <div class="intro-item edit-profile-button"><button data-popup-target="#edit-profile-popup">Edit Profile</button></div>
+
+            <% if(user.id != profile_user.id){ %>
+                <% if(profile_user.friendships.findIndex((f) => ((f.from_user==user.id) || (f.to_user==user.id))) == -1){ %>
+                    <div id="friend-button-container">
+                        <a href="/friends/add/<%= profile_user.id%>"><button id="friend-button">Add Friend</button></a>
+                    </div>    
+                <% }else{ %>
+                    <div id="friend-button-container">
+                        <a href="/friends/remove/<%= profile_user.id%>"><button id="friend-button">Remove Friend</button></a>
+                    </div>
+                <% } %>
+                    
             <% } %>
-            <div class="profile-name">Hi! <%= profile_user.name %></div>
+
         </div>
-
-        <% if(user.id == profile_user.id){ %>
-            <form action="/users/update-avatar/<%= profile_user.id %>" method="POST" enctype="multipart/form-data">
-                <input type="file" name="avatar" placeholder="Profile Picture">
-                <input type="submit" value="update">
-            </form>
-        <% } %>
-
-
-        
-        <p>Your email id is: <%= profile_user.email %></p>
-
-        <% if(user.id == profile_user.id){ %>
-                <!-- if user matches then show the form  -->
-                <form action="/users/update/<%= profile_user.id %>" method="POST">
-                    <input type="text" name="name" placeholder="Your Name" value="<%= profile_user.name %>" required>
-                    <input type="text" name="email" placeholder="Your Email" value="<%= profile_user.email %>" required>
-                    <input type="submit" value="update">
-                </form>
-        <% } %>
-
-        <% if(user.id != profile_user.id){ %>
-            <% if(profile_user.friendships.findIndex((f) => ((f.from_user==user.id) || (f.to_user==user.id))) == -1){ %>
-                <div id="friend-button-container">
-                    <a href="/friends/add/<%= profile_user.id%>"><button id="friend-button">Add Friend</button></a>
-                </div>    
-            <% }else{ %>
-                <div id="friend-button-container">
-                    <a href="/friends/remove/<%= profile_user.id%>"><button id="friend-button">Remove Friend</button></a>
-                </div>
-            <% } %>
-                
-        <% } %>
-
     </div>
 </div>
 
+<% if(user.id == profile_user.id){ %>
+    <div class="edit-profile-popup" id="edit-profile-popup">
+        <div class="popup-header">
+            <div class="popup-title">Edit Profile</div>
+            <button data-close-button class="popup-close">&times;</button>
+        </div>
+
+        <!-- <div class="popup-body"> -->
+            <form action="/users/update/<%= profile_user.id %>" method="POST" enctype="multipart/form-data">
+        <div class="popup-body">
+                <label for="update-name"><div class="input-labels">Name</div></label>
+                <div><input class="input-box" id="update-name" type="text" name="name" placeholder="Your Name" value="<%= profile_user.name %>" required></div>
+                <label for="update-email"><div class="input-labels">Email</div></label>
+                <div><input class="input-box" id="update-email" type="text" name="email" placeholder="Your Email" value="<%= profile_user.email %>" required></div>
+                <label for="file-upload"><div class="file-input">Choose a profile picture</div></label>
+                <input type="file" id="file-upload" name="avatar" placeholder="Profile Picture" accept="image/*">
+        </div>
+                <div class="update-button-container"><input class="update-button" type="submit" value="update"></div>
+            
+            </form>
+        <!-- </div> -->
+    </div>
+    <div id="overlay"></div>
+<% } %>
+
+<script src="/js/edit-profile.js"></script>
 <script src="/js/friends.js"></script>
 
 

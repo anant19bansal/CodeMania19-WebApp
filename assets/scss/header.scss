@@ -8,15 +8,14 @@ header{
 
     #header-logo{
         font-weight: bold;
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     #auth-links{
-        margin-top:6px;
-        font-size: 1.2rem;
+        margin-top:4px;
+        font-size: 1.1rem;
         display: flex;
         flex-direction: row;
-        // justify-content: space-between;
 
         #header-profile-photo{
             height: 30;

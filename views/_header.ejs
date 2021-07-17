@@ -7,7 +7,11 @@
 
     <div id = "auth-links">
             <% if(locals.user){ %>
-                <div id="header-profile-photo"><img src="<%= locals.user.avatar %>" alt="<%= locals.user.name %>"></div>
+                <% if(locals.user.avatar) { %>
+                    <div id="header-profile-photo"><img src="<%= locals.user.avatar %>" alt="<%= locals.user.name %>"></div>
+                <% }else{ %>
+                    <div id="header-profile-photo"><img src="/images/default-avatar.jpg" alt="<%= locals.user.name %>"></div>
+                <% } %>
                 <div id="link1"> <a href="/users/profile/<%= locals.user.id %>" class="remove-a-style"><%= user.name %></a> </div>
                 <div id="link2"> <a href="/users/sign-out" class="remove-a-style">Sign Out</a> </div>    
             <% }else{ %>

@@ -17,25 +17,28 @@ module.exports.profile = function(req, res){
     })
 };
 
-module.exports.update = async function(req, res){
-    if(req.user.id == req.params.id){
-        User.findByIdAndUpdate(req.params.id, {name:req.body.name, email:req.body.email}, function(err, user){
-            req.flash('success', "Your profile is updated");
-            return res.redirect('back');
-        });
-    }else{
-        req.flash('error', "You cannot update this profile");
-        return res.status(401).send('Unauthorized');
-    }
-};
+// module.exports.update = async function(req, res){
+//     if(req.user.id == req.params.id){
+//         User.findByIdAndUpdate(req.params.id, {name:req.body.name, email:req.body.email}, function(err, user){
+//             req.flash('success', "Your profile is updated");
+//             return res.redirect('back');
+//         });
+//     }else{
+//         req.flash('error', "You cannot update this profile");
+//         return res.status(401).send('Unauthorized');
+//     }
+// };
 
-module.exports.updateAvatar = async function(req, res){
+module.exports.update = async function(req, res){
     if(req.user.id == req.params.id){
         try {
             let user = await User.findById(req.params.id);
             User.uploadedAvatar(req, res, function(err){
                 if(err) {console.log('**** Multer Error: ', err); return;}
                 // console.log(req.file);
+                // console.log(req.body);
+                user.name = req.body.name;
+                user.email = req.body.email;
 
                 if(req.file){
 

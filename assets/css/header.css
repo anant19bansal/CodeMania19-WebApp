@@ -7,10 +7,10 @@ header {
   color: white; }
   header #header-logo {
     font-weight: bold;
-    font-size: 2rem; }
+    font-size: 1.5rem; }
   header #auth-links {
-    margin-top: 6px;
-    font-size: 1.2rem;
+    margin-top: 4px;
+    font-size: 1.1rem;
     display: flex;
     flex-direction: row; }
     header #auth-links #header-profile-photo {
