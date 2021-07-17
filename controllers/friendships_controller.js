@@ -56,7 +56,7 @@ module.exports.removeFriend = async function(req,res){
     // console.log(user);
     // console.log(friend);
     let friendship = friend.friendships.find((f) => ((f.from_user==user.id) || (f.to_user==user.id)));
-    console.log(friendship);
+    // console.log(friendship);
     user.friendships.pull(friendship._id);
     user.save();
     friend.friendships.pull(friendship);

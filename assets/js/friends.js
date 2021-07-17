@@ -1,7 +1,8 @@
 {
     let addFriend = function(){
-        let url = $('#friend-button-container > a').prop('href');
         $('#friend-button').on('click', function(e){
+            let url = $('#friend-button-container > a').attr('href');
+            // console.log(url);
             e.preventDefault();
             $.ajax({
                 type: 'GET',
@@ -9,9 +10,15 @@
                 success: function(data){
                     // console.log(data.data.message);
                     if(data.data.isFriend){
-                        $('#friend-button').text('Remove Friend');
+                        let newURL = $('#friend-button-container > a').attr('href').replace("add","remove");
+                        $('#friend-button-container > a').attr('href', newURL);
+                        $('#friend-button > span').text('Remove Friend');
+                        $('#friend-button > i').attr('class', 'fas fa-user-times');
                     }else{
-                        $('#friend-button').text('Add Friend');
+                        let newURL = $('#friend-button-container > a').attr('href').replace("remove","add");
+                        $('#friend-button-container > a').attr('href', newURL);
+                        $('#friend-button > span').text('Add Friend');
+                        $('#friend-button > i').attr('class', 'fas fa-user-plus');
                     }
                 },
                 error: function(error){

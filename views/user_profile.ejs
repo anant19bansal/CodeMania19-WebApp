@@ -17,24 +17,29 @@
     <div id="after-name-section">        
 
         <div id="aside-left">
-
+            
+            <div id="intro-heading-container">
             <div id="intro-heading"> Intro </div>
-
-            <div class="intro-item"><i class="fas fa-user"></i><%= profile_user.name %></div>
-            <div class="intro-item"><i class="fas fa-envelope"></i><%= profile_user.email %></div>
-            <div class="intro-item edit-profile-button"><button data-popup-target="#edit-profile-popup">Edit Profile</button></div>
 
             <% if(user.id != profile_user.id){ %>
                 <% if(profile_user.friendships.findIndex((f) => ((f.from_user==user.id) || (f.to_user==user.id))) == -1){ %>
                     <div id="friend-button-container">
-                        <a href="/friends/add/<%= profile_user.id%>"><button id="friend-button">Add Friend</button></a>
+                        <a href="/friends/add/<%= profile_user.id%>"><button id="friend-button"><i class="fas fa-user-plus"></i><span>Add Friend</span></button></a>
                     </div>    
                 <% }else{ %>
                     <div id="friend-button-container">
-                        <a href="/friends/remove/<%= profile_user.id%>"><button id="friend-button">Remove Friend</button></a>
+                        <a href="/friends/remove/<%= profile_user.id%>"><button id="friend-button"><i class="fas fa-user-times"></i><span>Remove Friend</span></button></a>
                     </div>
                 <% } %>
                     
+            <% } %>
+            </div>
+
+            <div class="intro-item"><i class="fas fa-user"></i><%= profile_user.name %></div>
+            <div class="intro-item"><i class="fas fa-envelope"></i><%= profile_user.email %></div>
+
+            <% if(user.id == profile_user.id){ %>
+            <div class="intro-item edit-profile-button"><button data-popup-target="#edit-profile-popup">Edit Profile</button></div>
             <% } %>
 
         </div>
