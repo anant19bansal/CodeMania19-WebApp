@@ -10,7 +10,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 10px 2px #dbdbdb; }
+  box-shadow: 0 0 10px 2px #dbdbdb;
+  border-radius: 6px; }
   .sign-box .sign-content {
     width: 389px;
     margin: 0.6rem 0 1.7rem 0; }

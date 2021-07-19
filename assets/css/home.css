@@ -1,15 +1,111 @@
-#home-container {
+.home-container {
   display: flex;
-  min-height: 100%; }
-  #home-container #feeds-posts {
-    width: 70%;
-    padding: 10px; }
-  #home-container #aside-section {
-    width: 30%;
-    border-left: 1px solid lightgrey; }
-    #home-container #aside-section #user-friends {
-      height: 40%;
-      padding: 10px;
-      border-bottom: 1px solid lightgrey; }
-    #home-container #aside-section #all-users {
+  justify-content: space-between;
+  min-height: 100%;
+  padding: 10px 15%;
+  padding-top: 4px; }
+  .home-container .feeds-posts {
+    width: 40vw;
+    position: sticky;
+    padding: 9px; }
+    .home-container .feeds-posts .write-post-container {
+      width: 100%;
+      background-color: white;
+      box-shadow: 0 0 10px 2px #dbdbdb;
+      color: #626262;
+      padding: 20px;
+      border-radius: 5px; }
+      .home-container .feeds-posts .write-post-container .user-details {
+        display: flex;
+        align-items: center; }
+        .home-container .feeds-posts .write-post-container .user-details .user-post-image {
+          width: 45px;
+          height: 45px;
+          object-fit: cover;
+          border-radius: 50%;
+          margin-right: 10px; }
+        .home-container .feeds-posts .write-post-container .user-details p {
+          margin-top: 0px;
+          margin-bottom: 2px;
+          font-weight: 500; }
+        .home-container .feeds-posts .write-post-container .user-details small {
+          font-size: 12px; }
+      .home-container .feeds-posts .write-post-container .new-post-form {
+        padding-left: 55px;
+        padding-top: 15px; }
+        .home-container .feeds-posts .write-post-container .new-post-form form {
+          margin-bottom: 0; }
+        .home-container .feeds-posts .write-post-container .new-post-form textarea {
+          width: 100%;
+          border: 0;
+          outline: 0;
+          border-bottom: 1px solid #ccc;
+          background: transparent;
+          resize: none; }
+        .home-container .feeds-posts .write-post-container .new-post-form .submit-post-button {
+          margin-top: 20px;
+          text-align: end; }
+          .home-container .feeds-posts .write-post-container .new-post-form .submit-post-button input {
+            padding: 6px 0;
+            width: 5rem;
+            border: none;
+            border-radius: 4px;
+            background-color: #1B74E4;
+            color: white;
+            font-weight: 500;
+            font-size: 15px;
+            letter-spacing: 0.6px; }
+          .home-container .feeds-posts .write-post-container .new-post-form .submit-post-button input:hover {
+            background-color: #0361d7;
+            cursor: pointer; }
+  .home-container .aside-section {
+    width: 23vw;
+    height: auto;
+    background-color: white;
+    position: sticky;
+    top: 60px;
+    align-self: flex-start;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    color: #626262;
+    box-shadow: 0 0 10px 2px #dbdbdb; }
+    .home-container .aside-section .friends-list-heading {
+      padding: 10px 20px 10px 20px;
+      font-size: 17px;
+      font-weight: 600;
+      border-bottom: 1px solid #ccc;
+      margin-top: 0; }
+    .home-container .aside-section .user-friends {
+      height: 44vh;
+      padding: 10px 20px 0 20px;
+      display: flex;
+      flex-direction: column; }
+      .home-container .aside-section .user-friends a {
+        text-decoration: none;
+        color: #626262; }
+      .home-container .aside-section .user-friends .friends-list-container {
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none; }
+        .home-container .aside-section .user-friends .friends-list-container .friends-list-item {
+          display: flex;
+          flex-direction: row;
+          margin: 5px 0 5px 0px; }
+          .home-container .aside-section .user-friends .friends-list-container .friends-list-item .friends-photo {
+            height: 40;
+            width: 40;
+            object-fit: cover;
+            margin-right: 15px; }
+            .home-container .aside-section .user-friends .friends-list-container .friends-list-item .friends-photo img {
+              height: inherit;
+              width: inherit;
+              object-fit: cover;
+              border-radius: 50%; }
+          .home-container .aside-section .user-friends .friends-list-container .friends-list-item .friends-name {
+            padding-top: 9px; }
+      .home-container .aside-section .user-friends .friends-list-container::-webkit-scrollbar {
+        display: none; }
+    .home-container .aside-section #all-users {
       padding: 10px; }
