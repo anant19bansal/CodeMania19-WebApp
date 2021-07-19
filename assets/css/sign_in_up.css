@@ -6,8 +6,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-  top: 60px; }
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px 2px #dbdbdb; }
   .sign-box .sign-content {
     width: 389px;
     margin: 0.6rem 0 1.7rem 0; }
@@ -26,7 +29,8 @@
       width: 100%;
       margin-bottom: 10px;
       outline: none;
-      border: 1.5px solid #e0d8d8; }
+      border: 1.5px solid #e0d8d8;
+      border-radius: 10px; }
     .sign-box .sign-content #forgot-password {
       text-align: end;
       font-size: 13px;
@@ -40,7 +44,11 @@
       border: none;
       color: white;
       background-color: #FE7D41;
-      font-size: 14px; }
+      font-size: 14px;
+      border-radius: 10px; }
+    .sign-box .sign-content .form-submit-btn:hover {
+      background-color: #ff651d;
+      cursor: pointer; }
     .sign-box .sign-content .or-line {
       margin-top: -0.2rem;
       margin-bottom: 2rem;
@@ -66,7 +74,10 @@
         font-weight: bold;
         display: flex;
         flex-direction: row;
-        justify-content: center; }
+        justify-content: center;
+        border-radius: 10px; }
+      .sign-box .sign-content a .sign-google:hover {
+        color: #ff651d; }
       .sign-box .sign-content a img {
         height: 20px;
         width: 20px;

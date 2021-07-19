@@ -1,10 +1,11 @@
 #profile-page {
   background-color: white; }
   #profile-page #header-background-image {
-    height: 35vh;
+    height: 45vh;
     background-image: url(/images/default-background.jpg);
     background-size: cover;
-    background-position: center; }
+    background-position: center;
+    background-attachment: fixed; }
   #profile-page .image-and-name {
     height: auto;
     width: 100%;
@@ -32,7 +33,7 @@
   #profile-page #after-name-section {
     background-color: #EEEEEE;
     padding: 2rem;
-    height: 70vh; }
+    min-height: 70vh; }
     #profile-page #after-name-section #aside-left {
       width: 25rem;
       margin-left: 7rem;

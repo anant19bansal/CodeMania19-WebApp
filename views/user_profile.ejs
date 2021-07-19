@@ -53,7 +53,6 @@
             <button data-close-button class="popup-close">&times;</button>
         </div>
 
-        <!-- <div class="popup-body"> -->
             <form action="/users/update/<%= profile_user.id %>" method="POST" enctype="multipart/form-data">
         <div class="popup-body">
                 <label for="update-name"><div class="input-labels">Name</div></label>
@@ -66,7 +65,6 @@
                 <div class="update-button-container"><input class="update-button" type="submit" value="update"></div>
             
             </form>
-        <!-- </div> -->
     </div>
     <div id="overlay"></div>
 <% } %>

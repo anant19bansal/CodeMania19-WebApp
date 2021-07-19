@@ -2,12 +2,14 @@
     background-color: white;
 
     #header-background-image{
-        height: 35vh;
+        height: 45vh;
+        // width: 70vw;
+        // margin: auto;
         background-image: url(/images/default-background.jpg);
         background-size: cover;
         background-position: center;
         // position: relative;
-        // background-attachment: fixed;
+        background-attachment: fixed;
     }
     
     .image-and-name{
@@ -51,7 +53,7 @@
     #after-name-section{
         background-color: #EEEEEE;
         padding: 2rem;
-        height: 70vh;
+        min-height: 70vh;
         
         #aside-left{
             width: 25rem;

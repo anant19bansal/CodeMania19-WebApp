@@ -6,8 +6,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
-    top: 60px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px 2px #dbdbdb;
 
     .sign-content{
         width: 389px;
@@ -31,6 +34,7 @@
             margin-bottom: 10px;
             outline: none;
             border: 1.5px solid #e0d8d8;
+            border-radius: 10px;
         }
     
         #forgot-password{
@@ -51,6 +55,12 @@
             color: white;
             background-color: #FE7D41;
             font-size: 14px;
+            border-radius: 10px;
+        }
+
+        .form-submit-btn:hover{
+            background-color:#ff651d;
+            cursor: pointer;
         }
     
         .or-line{
@@ -86,6 +96,13 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
+                border-radius: 10px;
+            }
+
+            .sign-google:hover{
+                // background-color:#ff651d;
+                // cursor: pointer;
+                color: #ff651d;
             }
     
             img{

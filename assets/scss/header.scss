@@ -1,23 +1,29 @@
-header{
-    padding:0.5rem 1.5rem;
+.main-header{
+    padding:0.5rem 2rem;
+    box-sizing: border-box;
+    position: fixed;
+    width: 100vw;
     display:flex;
     flex-direction: row;
     justify-content: space-between;
     background-color: #0C6FF1;
     color: white;
+    box-shadow: 0 0 10px 2px #424242;
 
-    #header-logo{
+    
+
+    .header-logo{
         font-weight: bold;
         font-size: 1.5rem;
     }
 
-    #auth-links{
+    .auth-links{
         margin-top:4px;
         font-size: 1.1rem;
         display: flex;
         flex-direction: row;
 
-        #header-profile-photo{
+        .header-profile-photo{
             height: 30;
             width: 30;
             object-fit: cover;
@@ -30,7 +36,7 @@ header{
             }
         }
 
-        #link1{
+        .link1{
             padding:0 1rem;
             text-transform: capitalize;
             text-align: center;
