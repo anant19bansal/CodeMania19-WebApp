@@ -55,9 +55,7 @@ module.exports.create = async function(req, res){
 
 
 module.exports.destroy = async function(req, res){
-    
     try {
-        
         let comment = await Comment.findById(req.params.id);
         if(comment.user == req.user.id){
             let postId = comment.post;
@@ -82,9 +80,10 @@ module.exports.destroy = async function(req, res){
         }
 
     } catch (error) {
+        console.log("Error in deleting comment ... in comments_controller, ", error);
         req.flash('error', error);
         return res.redirect('back');
-        // console.log("Error in deletein comment ... in comments_controller, ", error);
+        
         // return;
     }
     

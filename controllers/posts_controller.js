@@ -20,6 +20,8 @@ module.exports.create = async function(req, res){
                         content: req.body.content,
                         Id: post._id,
                         name: post.user.name,
+                        avatar: post.user.avatar, //
+                        comments_length: post.comments.length, //
                     }
                 },
                 message: "Post created!",

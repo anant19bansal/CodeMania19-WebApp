@@ -4,7 +4,9 @@ class LikePostsComments{
         this.typeId = typeId;
         this.likeElement;
         if(type == 'Post'){
-            this.likeElement = $(`#post-${this.typeId} .like-buttons-post`);
+            // this.likeElement = $(`#post-${this.typeId} .like-buttons-post`);
+            this.likeElement = $(`#post-${this.typeId} .likes-icon-container`);
+            // console.log(this.likeElement);
         }else{
             this.likeElement = $(`#comment-${this.typeId} .like-buttons-comment`);
         }

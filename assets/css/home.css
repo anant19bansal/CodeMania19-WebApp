@@ -5,11 +5,11 @@
   padding: 10px 15%;
   padding-top: 4px; }
   .home-container .feeds-posts {
-    width: 40vw;
+    flex-basis: 60%;
     position: sticky;
     padding: 9px; }
     .home-container .feeds-posts .write-post-container {
-      width: 100%;
+      width: inherit;
       background-color: white;
       box-shadow: 0 0 10px 2px #dbdbdb;
       color: #626262;
@@ -58,6 +58,10 @@
           .home-container .feeds-posts .write-post-container .new-post-form .submit-post-button input:hover {
             background-color: #0361d7;
             cursor: pointer; }
+  .home-container .posts-list-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; }
   .home-container .aside-section {
     width: 23vw;
     height: auto;

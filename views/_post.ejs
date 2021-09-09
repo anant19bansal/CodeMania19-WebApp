@@ -1,35 +1,66 @@
-<li id="post-<%= post._id %>">
+<li class="posted-post-container" id="post-<%= post._id %>">
+    <div class="poster-header">
+        <div class="poster-details">
+            <% if(post.user.avatar) { %>
+                <img class="poster-post-image" src="<%= post.user.avatar %>" alt="<%= post.user.name %>">
+            <% }else{ %>
+                <img class="poster-post-image" src="/images/default-avatar.jpg" alt="<%= post.user.name %>">
+            <% } %>
+                <div>
+                    <p><%= post.user.name %></p>
+                    <!--TODO display post time and date here instead of public-->
+                    <small>Public</small>
+                </div>
+        </div>
+            <% if((locals.user) && (locals.user.id == post.user.id)) { %>
+                <div class="delete-post-button-container">
+                    <a class="delete-post-button" href="/posts/destroy/<%= post._id %>">
+                        <div>Delete</div>
+                    </a>
+                </div>    
+            <% } %>
+    </div>
+    
+    
     <p>
         <%= post.content %><br>
-        <small><%= post.user.name %></small>
     </p>
 
     
-    <small class="like-buttons-post">
-        <div><span class="likes-count"><%= post.likes.length %></span><span>&nbsp;Likes</span></div>
-        <% if(locals.user){ %>
-            <% if(post.likes.find(like => like.user==locals.user.id)) { %>
-                <a href="/likes/toggle/?id=<%= post._id %>&type=Post"><i class="fas fa-heart" style="color: red;"></i></a>
-            <% }else{ %>
-                <a href="/likes/toggle/?id=<%= post._id %>&type=Post"><i class="fas fa-heart" style="color: lightgrey;"></i></a>
-            <% } %>
-        <% } %>
-    </small><br>    
+    <small class="post-icons-container">
+        <div class="likes-icon-container">
+            <div class="likes-icon">
+                <% if(locals.user){ %>
+                    <% if(post.likes.find(like => like.user==locals.user.id)) { %>
+                        <a href="/likes/toggle/?id=<%= post._id %>&type=Post"><i class="fas fa-heart" style="color: red;"></i></a>
+                    <% }else{ %>
+                        <a href="/likes/toggle/?id=<%= post._id %>&type=Post"><i class="fas fa-heart" style="color: lightgrey;"></i></a>
+                    <% } %>
+                <% } %>
+            </div>
+            <div class="likes-count">
+                <%= post.likes.length %>
+            </div>
+        </div>
+        <div class="comments-icon-container">
+            <div class="comments-icon">
+                <i class="fas fa-comments" style="color: lightgrey;"></i>
+            </div>
+            <div class="comments-count">
+                <%= post.comments.length %>
+            </div>
+        </div>
+    </small>
     
+    <br>    
     
-
-    <% if((locals.user) && (locals.user.id == post.user.id)) { %>
-        <small>
-            <a class="delete-post-button" href="/posts/destroy/<%= post._id %>">X</a>
-        </small>    
-    <% } %>
 
     <div class="post-comments">
         <% if(locals.user){ %>
             <form action="/comments/create" id="new-comment-form-<%=post._id%>" method="POST">
-                <input type="text" name="content" placeholder="Write Your Comment here..." required>
+                <input class="comment-here" type="text" name="content" placeholder="Write comment here..." required>
                 <input type="hidden" name="post" value="<%= post._id %>">
-                <input type="submit" value="Add Comment">
+                <span class="submit-comment-button"><input type="submit" value="Comment"></span>
             </form>
         <% } %>
         <div class="post-comments-list">

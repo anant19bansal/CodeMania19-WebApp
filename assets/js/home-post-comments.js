@@ -14,7 +14,8 @@ class PostComments{
         // call for all the existing comments
         // console.log($(' .delete-comment-button', this.postContainer));
         // console.log($(this));
-        $(' .delete-comment-button', this.postContainer).each(function(){
+        // console.log($(' .delete-comment-button a', this.postContainer));
+        $(' .delete-comment-button a', this.postContainer).each(function(){
             self.deleteComment($(this));
         });
 
@@ -40,12 +41,12 @@ class PostComments{
                 data: $(self).serialize(),
                 success: function(data){
                     let newComment = pSelf.newCommentDom(data.data.comment);
-                    $(`#post-comments-${postId}`).prepend(newComment);
+                    $(`#post-comments-${postId}`).append(newComment);
                     // console.log(pSelf);
                     // console.log(newComment);
                     // console.log($(' .delete-comment-button'));
                     // console.log($(' .delete-comment-button', newComment));
-                    pSelf.deleteComment($(' .delete-comment-button', newComment));
+                    pSelf.deleteComment($(' .delete-comment-button a', newComment));
                     new LikePostsComments('Comment', data.data.comment.Id);
                     new Noty({
                         theme: 'relax',
@@ -67,38 +68,40 @@ class PostComments{
 
 
     newCommentDom(comment){
-        // I've added a class 'delete-comment-button' to the delete comment link and also id to the comment's li
-        return $(`<li id="comment-${ comment.Id }">
-                    <p>
-                        ${ comment.content }
-                        <br>
-                        <small>${ comment.name }</small>
-                        
-                        <small class="like-buttons-comment">
-                            <div><span class="likes-count">0</span><span>&nbsp;Likes</span></div>
-                            <a href="/likes/toggle/?id=${comment.Id}&type=Comment"><i class="fas fa-heart" style="color: lightgrey;"></i></a>
-                        </small><br>
+        return $(`<li class="comments-container" id="comment-${ comment.Id }">
 
-                        <small>
-                            <a class="delete-comment-button" href="/comments/destroy/${ comment.Id}">X</a>
-                        </small> 
-                    </p>
+                    <div class="comment-box">
+                        <div class="commenter-name">${ comment.name }</div>
+                        <div class="comment-content">${ comment.content }</div>
+                    </div>
+                    
+                    <span class="like-buttons-comment">
+                        <small> 
+                            <a href="/likes/toggle/?id=${comment.Id}&type=Comment "><i class="fas fa-heart" style="color: lightgrey;"></i></a>
+                            <span class="likes-count">0</span>
+                        </small>
+                    </span>
+                    <small>
+                        <span class="delete-comment-button">
+                            <a href="/comments/destroy/${comment.Id}">Delete</a>
+                        </span>
+                    </small>
+                    
                 </li>`);
     }
 
 
     deleteComment(deleteLink){
-        // console.log('here at delete');
+        // console.log(`here at delete  with link:  ${$(deleteLink).prop('href')}`);
         $(deleteLink).click(function(e){
             // console.log('preventing default delete');
             e.preventDefault();
-
             $.ajax({
                 type: 'get',
                 url: $(deleteLink).prop('href'),
                 success: function(data){
                     // console.log(data);
-                    // console.log($(`#comment-${data.data.comment_id}`));
+                    console.log(`#comment-${data.data}`);
                     $(`#comment-${data.data.comment_id}`).remove();
 
                     new Noty({
@@ -111,7 +114,7 @@ class PostComments{
                     }).show();
                 },
                 error: function(error){
-                    console.log(error.responseText);
+                    console.log(`This is the generated error:    ${error.responseText}`);
                 }
             });
 
