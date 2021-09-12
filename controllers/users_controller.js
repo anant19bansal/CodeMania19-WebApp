@@ -88,6 +88,18 @@ module.exports.update = async function(req, res){
 }
 
 
+module.exports.searchUser = async function(req, res){
+    try {
+        let payload = req.body.payload.trim();
+        let search = await User.find({name: {$regex: new RegExp('^'+payload+'.*','i')}});
+        search = search.slice(0,5);    
+        res.send({payload: search});
+    } catch (error) {
+        console.log(`*********error in searchUser function in users_controller:  ${error}`);
+    }
+}
+
+
 // render the sign up page
 module.exports.signUp = function(req, res){
     return res.render('user_sign_up',{

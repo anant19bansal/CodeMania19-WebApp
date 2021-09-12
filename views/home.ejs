@@ -1,6 +1,15 @@
 <link rel="stylesheet" href="/css/home.css">
 <link rel="stylesheet" href="/css/post.css">
 <link rel="stylesheet" href="/css/comment.css">
+
+<div class="search-container">
+<form id="search-form">
+    <input type="text" id="search-name" onkeyup="sendData(this)" placeholder="Search">
+</form>
+    <section id="searchresults">
+    </section>
+</div>
+
 <div class="home-container">
     <section class="feeds-posts">
         <!-- <div>Posts</div> -->
@@ -78,7 +87,7 @@
 
 </div>
 
-
+<script src="/js/search.js"></script>
 <script src="/js/hide_comments.js"></script>
 <script src="/js/likes.js"></script>
 <script src="/js/home-post-comments.js"></script>

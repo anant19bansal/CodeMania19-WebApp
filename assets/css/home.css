@@ -1,3 +1,55 @@
+.search-container {
+  position: fixed;
+  z-index: 100;
+  left: 545px;
+  top: 10px; }
+  .search-container #search-form {
+    margin: 0; }
+    .search-container #search-form #search-name {
+      padding: 0 20px;
+      margin-top: 1px;
+      width: 30rem;
+      height: 2rem;
+      outline: none;
+      border: none;
+      border-radius: 20px; }
+  .search-container #searchResults {
+    margin-top: 7px;
+    position: fixed;
+    z-index: 100;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    border-radius: 10px;
+    background-color: #efefef;
+    width: 30rem; }
+    .search-container #searchResults hr {
+      margin: 0;
+      border-top: none;
+      border: 0.5px solid lightgray; }
+    .search-container #searchResults a {
+      text-decoration: none;
+      color: black; }
+      .search-container #searchResults a .search-item {
+        display: flex;
+        flex-direction: row;
+        text-align: start;
+        border-radius: 10px;
+        margin: 0;
+        padding: 5px 20px; }
+        .search-container #searchResults a .search-item img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          object-fit: cover; }
+        .search-container #searchResults a .search-item .search-result-name {
+          margin-left: 10px;
+          margin-top: 8px; }
+      .search-container #searchResults a .search-item:hover {
+        cursor: pointer;
+        background-color: #e3e2e2;
+        border-radius: 10px; }
+
 .home-container {
   display: flex;
   justify-content: space-between;

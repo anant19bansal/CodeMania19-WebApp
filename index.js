@@ -1,5 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const app = express();
 const port = 8000;
 const expressLayouts = require('express-ejs-layouts');
@@ -30,7 +31,9 @@ app.use(sassMiddleWare({
     prefix: '/css',
 }));
 
-app.use(express.urlencoded());
+app.use(bodyParser.json());
+
+app.use(express.urlencoded({extended:true}));
 
 app.use(cookieParser());
 

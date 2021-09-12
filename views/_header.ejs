@@ -5,6 +5,14 @@
         </a>
     </div>
 
+    
+        <!-- <form id="search-form">
+        <input type="text" id="search-name" onkeyup="sendData(this)" placeholder="Search">
+        <section id="searchresults">
+        </section>
+        </form> -->
+    
+
     <div class = "auth-links">
             <% if(locals.user){ %>
                 <% if(locals.user.avatar) { %>
@@ -21,3 +29,5 @@
     </div>
 
 </header>
+
+<script src="/js/search.js"></script>
