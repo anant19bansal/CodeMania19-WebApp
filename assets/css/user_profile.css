@@ -33,7 +33,10 @@
   #profile-page #after-name-section {
     background-color: #EEEEEE;
     padding: 2rem;
-    min-height: 70vh; }
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start; }
     #profile-page #after-name-section #aside-left {
       width: 25rem;
       margin-left: 7rem;
@@ -79,6 +82,15 @@
       #profile-page #after-name-section #aside-left .edit-profile-button button:hover {
         background-color: #d2cbcb;
         cursor: pointer; }
+    #profile-page #after-name-section #posts-list-container {
+      width: 40rem;
+      height: auto;
+      margin-top: -15px;
+      margin-right: 10rem; }
+      #profile-page #after-name-section #posts-list-container ul {
+        list-style: none;
+        padding: 0;
+        margin: 0; }
 
 .edit-profile-popup {
   position: fixed;

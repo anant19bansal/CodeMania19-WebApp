@@ -42,11 +42,14 @@ class PostComments{
                 success: function(data){
                     let newComment = pSelf.newCommentDom(data.data.comment);
                     $(`#post-comments-${postId}`).append(newComment);
-                    // console.log(pSelf);
+                    $(`#new-comment-form-${postId} > input`).val('');
+                    let count = pSelf.postContainer.find('.comments-count').text();
+                    count++;
+                    pSelf.postContainer.find('.comments-count').text(count);
                     // console.log(newComment);
                     // console.log($(' .delete-comment-button'));
                     // console.log($(' .delete-comment-button', newComment));
-                    pSelf.deleteComment($(' .delete-comment-button a', newComment));
+                    pSelf.deleteComment($(' .delete-comment-button a', newComment), pSelf.postContainer.find('.comments-count'));
                     new LikePostsComments('Comment', data.data.comment.Id);
                     new Noty({
                         theme: 'relax',
@@ -91,7 +94,7 @@ class PostComments{
     }
 
 
-    deleteComment(deleteLink){
+    deleteComment(deleteLink, ele){
         // console.log(`here at delete  with link:  ${$(deleteLink).prop('href')}`);
         $(deleteLink).click(function(e){
             // console.log('preventing default delete');
@@ -101,8 +104,11 @@ class PostComments{
                 url: $(deleteLink).prop('href'),
                 success: function(data){
                     // console.log(data);
-                    console.log(`#comment-${data.data}`);
+                    // console.log(`#comment-${data.data}`);
                     $(`#comment-${data.data.comment_id}`).remove();
+                    let count = ele.text();
+                    count--;
+                    ele.text(count);
 
                     new Noty({
                         theme: 'relax',

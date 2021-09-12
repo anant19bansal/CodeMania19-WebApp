@@ -60,6 +60,8 @@
       justify-content: space-between; }
       .posted-post-container .post-icons-container .comments-icon-container .comments-icon i {
         margin-top: 3px; }
+    .posted-post-container .post-icons-container .comments-icon-container:hover {
+      cursor: pointer; }
   .posted-post-container .post-comments form {
     margin-bottom: 10px; }
   .posted-post-container .post-comments .comment-here {
@@ -86,3 +88,5 @@
     .posted-post-container .post-comments .submit-comment-button input:hover {
       background-color: #0361d7;
       cursor: pointer; }
+  .posted-post-container .post-comments .post-comments-list {
+    display: block; }

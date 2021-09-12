@@ -103,6 +103,10 @@
             }
         }
 
+        .comments-icon-container:hover{
+            cursor: pointer;
+        }
+
     }
 
     .post-comments{
@@ -143,6 +147,10 @@
                 background-color: #0361d7;
                 cursor: pointer;
             }
+        }
+
+        .post-comments-list{
+            display: block;
         }
     }
 }

@@ -1,21 +1,46 @@
 const User = require('../models/user');
+const Post = require('../models/post');
 const fs = require('fs');
 const path = require('path');
+
 // module.exports.profile = function(req, res){
-//     return res.render('user_profile',{
-//         title: "user profile"
-//     });
+//     User.findById(req.params.id).populate({path: 'friendships'}).exec(function(err, user){
+//         console.log(user);
+        
+//         return res.render('user_profile',{
+//             title: "user profile",
+//             profile_user: user
+//         });
+//     })
 // };
 
-module.exports.profile = function(req, res){
-    User.findById(req.params.id).populate({path: 'friendships'}).exec(function(err, user){
+module.exports.profile = async function(req, res){
+    try {
+        let user = await User.findById(req.params.id).populate({path: 'friendships'});
         // console.log(user);
-        return res.render('user_profile',{
-            title: "user profile",
-            profile_user: user
+        let posts = await Post.find({user: user.id})
+        .sort('-createdAt')                       
+        .populate('user')
+        .populate('likes')
+        .populate({
+            path:'comments',
+            populate: [{path: 'likes'}, {path: 'user'}]
         });
-    })
+        console.log(posts);
+        if(user){
+            return res.render('user_profile',{
+                title: "user profile",
+                profile_user: user,
+                posts: posts
+            });
+        };
+    } catch (error) {
+        console.log(`********Error in users_controller profile: ${error}`);
+        return res.redirect('back');
+    }
+    
 };
+
 
 // module.exports.update = async function(req, res){
 //     if(req.user.id == req.params.id){

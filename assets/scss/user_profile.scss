@@ -53,9 +53,15 @@
     #after-name-section{
         background-color: #EEEEEE;
         padding: 2rem;
-        min-height: 70vh;
+        // min-height: 70vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
         
         #aside-left{
+            // height: 100px;
+            // overflow: hidden;
             width: 25rem;
             // margin-top: 2rem;
             margin-left: 7rem;
@@ -125,6 +131,19 @@
                     background-color: #d2cbcb;
                     cursor: pointer;
                 }
+            }
+        }
+
+        #posts-list-container{
+            width: 40rem;
+            // border: 1px solid black;
+            height: auto;
+            margin-top: -15px;
+            margin-right: 10rem;
+            ul{
+                list-style: none;
+                padding: 0;
+                margin: 0;
             }
         }
     

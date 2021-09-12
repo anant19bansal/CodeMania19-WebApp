@@ -16,6 +16,7 @@
                     // console.log(data);
                     let newPost = newPostDom(data.data.post);
                     $('#posts-list-container>ul').prepend(newPost);
+                    $('#new-post-form > textarea').val('');
                     // console.log(newPost);
                     // console.log($(' .delete-post-button', newPost));
                     deletePost($(' .delete-post-button', newPost));
@@ -39,35 +40,6 @@
     }
 
     //method to create a post in DOM
-    // let newPostDom = function(post){
-    //     return $(`<li id="post-${ post.Id }">
-    //                 <p>
-    //                     ${ post.content }<br>
-    //                     <small>${ post.name }</small>
-    //                 </p>
-
-    //                 <small class="like-buttons-post">
-    //                     <div><span class="likes-count">0</span><span>&nbsp;Likes</span></div>
-    //                     <a href="/likes/toggle/?id=${post.Id}&type=Post"><i class="fas fa-heart" style="color: lightgrey;"></i></a>
-    //                 </small><br>
-                
-    //                     <small>
-    //                         <a class="delete-post-button" href="/posts/destroy/${ post.Id }">X</a>
-    //                     </small>    
-                
-    //                 <div class="post-comments">
-    //                         <form action="/comments/create" id="new-comment-form-${post.Id}" method="POST">
-    //                             <input type="text" name="content" placeholder="Write Your Comment here..." required>
-    //                             <input type="hidden" name="post" value="${ post.Id }">
-    //                             <input type="submit" value="Add Comment">
-    //                         </form>
-    //                     <div class="post-comments-list">
-    //                         <ul id="post-comments-${ post.Id }">
-    //                         </ul>
-    //                     </div>        
-    //                 </div>
-    //             </li>`);
-    // }
     let newPostDom = function(post){
         return $(`<li class="posted-post-container" id="post-${post.Id}">
             <div class="poster-header">
