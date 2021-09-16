@@ -1,1 +1,1 @@
-# CodeMania19-WebApp
+# CodeMania-WebApp
